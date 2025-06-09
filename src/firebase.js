@@ -1,16 +1,19 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDXNfURwtaijmf-QCXwDrTGQAX1emD_3QQ",
-  authDomain: "minitorqueapp.firebaseapp.com",
-  projectId: "minitorqueapp",
-  storageBucket: "minitorqueapp.appspot.com",  // fixed here
-  messagingSenderId: "217168133762",
-  appId: "1:217168133762:web:b4f1bf68d505bb24d43e9b",
-  measurementId: "G-G57XFL5YZ7"
+  apiKey: "your_api_key",
+  authDomain: "your_project.firebaseapp.com",
+  projectId: "your_project_id",
+  storageBucket: "your_project.appspot.com",
+  messagingSenderId: "your_sender_id",
+  appId: "your_app_id",
+  measurementId: "your_measurement_id"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+export { auth, db };
