@@ -29,13 +29,13 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState('');
-  const [lastName,  setLastName]  = useState('');
-  const [email,     setEmail]     = useState('');
-  const [password,  setPassword]  = useState('');
-  const [phone,     setPhone]     = useState('');
-  const [address,   setAddress]   = useState('');
-  const [error,     setError]     = useState('');
-  const [loading,   setLoading]   = useState(false);
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -75,14 +75,26 @@ export default function SignUp() {
     <Box
       sx={{
         minHeight: '100vh',
-        background: `linear-gradient(135deg, ${theme.palette.primary[50]} 0%, ${theme.palette.secondary[100]} 100%)`,
+        backgroundImage: 'url("/bg-cars.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        p: 2
+        justifyContent: 'flex-start', // ✅ aligned to left
+        p: 4
       }}
     >
-      <Card elevation={8} sx={{ maxWidth: 400, width: '100%', borderRadius: 3 }}>
+      <Card
+        elevation={8}
+        sx={{
+          maxWidth: 400,
+          width: '100%',
+          borderRadius: 3,
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(5px)'
+        }}
+      >
         <CardContent>
           <Stack spacing={2} alignItems="center">
             <Avatar sx={{ bgcolor: theme.palette.secondary.main, width: 64, height: 64 }}>
@@ -98,66 +110,111 @@ export default function SignUp() {
 
             <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
               <Stack spacing={2}>
-                <TextField
-                  required fullWidth label="First Name" value={firstName}
-                  onChange={e => setFirstName(e.target.value)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon />
-                      </InputAdornment>
-                    )
-                  }}
-                />
+                <Stack direction="row" spacing={2}>
+                  <TextField
+                    required
+                    fullWidth
+                    label="First Name"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PersonIcon />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                  <TextField
+                    required
+                    fullWidth
+                    label="Last Name"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PersonIcon />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                </Stack>
 
                 <TextField
-                  required fullWidth label="Last Name" value={lastName}
-                  onChange={e => setLastName(e.target.value)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon />
-                      </InputAdornment>
-                    )
-                  }}
-                />
-
-                <TextField
-                  required fullWidth label="Email Address" type="email" value={email}
+                  required
+                  fullWidth
+                  label="Email Address"
+                  type="email"
+                  value={email}
                   onChange={e => setEmail(e.target.value)}
                   InputProps={{
-                    startAdornment: <InputAdornment position="start"><EmailIcon /></InputAdornment>
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <EmailIcon />
+                      </InputAdornment>
+                    )
                   }}
                 />
 
                 <TextField
-                  required fullWidth label="Password" type="password" value={password}
+                  required
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  value={password}
                   onChange={e => setPassword(e.target.value)}
                   InputProps={{
-                    startAdornment: <InputAdornment position="start"><LockOutlinedIcon /></InputAdornment>
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LockOutlinedIcon />
+                      </InputAdornment>
+                    )
                   }}
                 />
 
                 <TextField
-                  required fullWidth label="Phone Number" type="tel" value={phone}
+                  required
+                  fullWidth
+                  label="Phone Number"
+                  type="tel"
+                  value={phone}
                   onChange={e => setPhone(e.target.value)}
                   InputProps={{
-                    startAdornment: <InputAdornment position="start"><PhoneIcon /></InputAdornment>
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PhoneIcon />
+                      </InputAdornment>
+                    )
                   }}
                 />
 
                 <TextField
-                  required fullWidth multiline rows={2} label="Address" value={address}
+                  required
+                  fullWidth
+                  multiline
+                  rows={2}
+                  label="Address"
+                  value={address}
                   onChange={e => setAddress(e.target.value)}
                   InputProps={{
-                    startAdornment: <InputAdornment position="start"><HomeIcon /></InputAdornment>
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <HomeIcon />
+                      </InputAdornment>
+                    )
                   }}
                 />
 
                 <Button
-                  type="submit" fullWidth size="large" disabled={loading}
+                  type="submit"
+                  fullWidth
+                  size="large"
+                  disabled={loading}
                   sx={{
-                    py: 1.5, borderRadius: 2, fontWeight: 'bold',
+                    py: 1.5,
+                    borderRadius: 2,
+                    fontWeight: 'bold',
                     background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                     color: '#fff',
                     '&:hover': { opacity: 0.9 }

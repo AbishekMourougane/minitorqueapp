@@ -1,7 +1,7 @@
-import React, { useState }                    from 'react';
-import { useNavigate, Link as RouterLink }    from 'react-router-dom';
-import { auth }                               from '../firebase/config';
-import { signInWithEmailAndPassword }         from 'firebase/auth';
+import React, { useState } from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { auth } from '../firebase/config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import {
   Avatar,
@@ -17,16 +17,16 @@ import {
   useTheme
 } from '@mui/material';
 
-import EmailIcon        from '@mui/icons-material/Email';
+import EmailIcon from '@mui/icons-material/Email';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 export default function SignIn() {
-  const theme    = useTheme();
+  const theme = useTheme();
   const navigate = useNavigate();
 
-  const [email,    setEmail]    = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error,    setError]    = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -43,11 +43,14 @@ export default function SignIn() {
     <Box
       sx={{
         minHeight: '100vh',
-        background: `linear-gradient(135deg, ${theme.palette.primary[50]} 0%, ${theme.palette.secondary[100]} 100%)`,
+        backgroundImage: 'url("/bg-cars.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        p: 2
+        justifyContent: 'flex-start', // ✅ aligned to the left
+        p: 4
       }}
     >
       <Card
@@ -55,7 +58,9 @@ export default function SignIn() {
         sx={{
           maxWidth: 400,
           width: '100%',
-          borderRadius: 3
+          borderRadius: 3,
+          backgroundColor: 'rgba(255, 255, 255, 0.9)', // translucent white
+          backdropFilter: 'blur(5px)'                  // slight blur
         }}
       >
         <CardContent>
@@ -86,7 +91,6 @@ export default function SignIn() {
                       </InputAdornment>
                     )
                   }}
-                  sx={{ borderRadius: 2 }}
                 />
 
                 <TextField
@@ -102,11 +106,12 @@ export default function SignIn() {
                       </InputAdornment>
                     )
                   }}
-                  sx={{ borderRadius: 2 }}
                 />
 
                 <Button
-                  type="submit" fullWidth size="large"
+                  type="submit"
+                  fullWidth
+                  size="large"
                   sx={{
                     py: 1.5,
                     borderRadius: 2,
